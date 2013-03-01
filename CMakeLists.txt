@@ -33,30 +33,40 @@ set(TESTING "NONE" CACHE STRING "NONE")
 set(COVERAGE "NONE" CACHE STRING "NONE")
 
 set(PERSEID_NAME perseid)
+set(PERSEID_LIB perseid)
 set(PERSEID_SOURCE_DIR src)
 set(PERSEID_INCLUDE_DIR include)
 set(PERSEID_TEST_DIR test/src)
 
 find_package(Qt4 REQUIRED)
 include_directories(
-    ${PERSEID_INCLUDE_DIR}
-    ${QT_INCLUDES}
-    ${CMAKE_CURRENT_BINARY_DIR}
+  ${PERSEID_INCLUDE_DIR}
+  ${QT_INCLUDES}
+  ${CMAKE_CURRENT_BINARY_DIR}
 )
 
-set(perseid_SRCS
-    ${PERSEID_SOURCE_DIR}/perseid.cpp
-    ${PERSEID_SOURCE_DIR}/main.cpp
+add_library(${PERSEID_LIB}
+  ${PERSEID_SOURCE_DIR}/io/IOException.cpp
+  ${PERSEID_SOURCE_DIR}/io/TransformationException.cpp
+  ${PERSEID_SOURCE_DIR}/io/XmlTransformer.cpp
+  ${PERSEID_SOURCE_DIR}/model/Review.cpp
+  ${PERSEID_SOURCE_DIR}/util/Exception.cpp
+}
+
+set(PERSEID_SRCS
+  ${PERSEID_SOURCE_DIR}/perseid.cpp
+  ${PERSEID_SOURCE_DIR}/main.cpp
 )
-qt4_automoc(${perseid_SRCS})
+qt4_automoc(${PERSEID_SRCS})
 add_executable(
-    ${PERSEID_NAME}
-    ${perseid_SRCS}
+  ${PERSEID_NAME}
+  ${PERSEID_SRCS}
 )
 target_link_libraries(
-    ${PERSEID_NAME}
-    ${QT_QTCORE_LIBRARY}
-    ${QT_QTGUI_LIBRARY}
+  ${PERSEID_NAME}
+  ${PERSEID_LIB}
+  ${QT_QTCORE_LIBRARY}
+  ${QT_QTGUI_LIBRARY}
 )
 #install(TARGETS perseid RUNTIME DESTINATION bin)
 
