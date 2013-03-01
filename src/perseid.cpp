@@ -1,4 +1,4 @@
-#include "perseid.h"
+#include "perseid.hpp"
 
 #include "perseid.moc"
 

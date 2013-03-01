@@ -1,5 +1,5 @@
 #include <QtGui/QApplication>
-#include "perseid.h"
+#include "perseid.hpp"
 
 
 int main(int argc, char** argv)
