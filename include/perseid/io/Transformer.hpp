@@ -27,10 +27,14 @@
 #define TRANSFORMER_HPP
 
 #include <string>
+#include "perseid/io/IOException.hpp"
+#include "perseid/io/TransformationException.hpp"
 #include "perseid/model/Review.hpp"
 
-using std::string;
+using perseid::IOException;
 using perseid::Review;
+using perseid::TransformationException;
+using std::string;
 
 namespace perseid {
 

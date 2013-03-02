@@ -33,7 +33,7 @@ namespace perseid {
   /**
    * Transforms a Review to and from XML.
    */
-  class XmlTransformer : perseid::Transformer {
+  class XmlTransformer : public perseid::Transformer {
   public:
     /**
      * Default constructor.

@@ -33,7 +33,7 @@ set(TESTING "NONE" CACHE STRING "NONE")
 set(COVERAGE "NONE" CACHE STRING "NONE")
 
 set(PERSEID_NAME perseid)
-set(PERSEID_LIB perseid)
+set(PERSEID_LIB libperseid)
 set(PERSEID_SOURCE_DIR src)
 set(PERSEID_INCLUDE_DIR include)
 set(PERSEID_TEST_DIR test/src)
@@ -51,7 +51,7 @@ add_library(${PERSEID_LIB}
   ${PERSEID_SOURCE_DIR}/io/XmlTransformer.cpp
   ${PERSEID_SOURCE_DIR}/model/Review.cpp
   ${PERSEID_SOURCE_DIR}/util/Exception.cpp
-}
+)
 
 set(PERSEID_SRCS
   ${PERSEID_SOURCE_DIR}/perseid.cpp

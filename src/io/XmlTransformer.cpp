@@ -20,12 +20,12 @@
 
 #include "perseid/io/XmlTransformer.hpp"
 
-XmlTransformer::XmlTransformer()
+perseid::XmlTransformer::XmlTransformer()
 {
 
 }
 
-XmlTransformer::~XmlTransformer()
+perseid::XmlTransformer::~XmlTransformer()
 {
 
 }
