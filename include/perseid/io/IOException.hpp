@@ -23,23 +23,31 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef TRANSFORMER_HPP
-#define TRANSFORMER_HPP
+#ifndef IOEXCEPTION_HPP
+#define IOEXCEPTION_HPP
+
+#define IOEXCEPTION_MESSAGE "Error doing input/output."
 
 #include "perseid/util/Exception.hpp"
 
 namespace perseid {
 
   /**
-   * Interface for converting between Review objects and files.
+   * Indicates that an exception occurred whilst doing input or output.
    */
   class IOException {
   public:
+    /**
+     * Default constructor.
+     */
 	IOException();
+    /**
+     * Constructs an exception using the given message.
+     */
 	IOException(string const message);
   };
 
 };
 
-#endif // TRANSFORMER_HPP
+#endif // IOEXCEPTION_HPP
 

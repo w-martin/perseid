@@ -47,12 +47,12 @@ namespace perseid {
      * {@inheritdoc}
      */
     virtual Review input(string const & filename) 
-      throw (TransformationException) = 0;
+      throw (TransformationException);
     /**
      * {@inheritdoc}
      */
     virtual void output(Review const * const review, string const & filename) 
-      throw (IOException) = 0;
+      throw (IOException);
   };
 
 };

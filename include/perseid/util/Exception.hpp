@@ -39,7 +39,6 @@ namespace perseid {
    * 
    * @param message the message that will be printed as the cause for this
    * <code>Exception</code>.
-   * 
    */
   class Exception : public exception {
   public:
@@ -48,12 +47,10 @@ namespace perseid {
      * 
      * @param message the message that will be printed as the cause for this
      * <code>Exception</code>.
-     * 
      */
     Exception(string const message);
     /**
-     * Default destructor.
-     * 
+     * Default destructor. 
      */
     virtual ~Exception() throw ();
     /**
@@ -62,7 +59,6 @@ namespace perseid {
      * 
      * @return a C-style character string describing the general cause of 
      * the current error.
-     * 
      */
     virtual char const * what() const throw ();
   private:
