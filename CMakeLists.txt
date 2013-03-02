@@ -29,14 +29,16 @@ cmake_minimum_required(VERSION 2.6)
 
 project(perseid)
 
+set(BUILD "ALL" CACHE STRING "ALL")
 set(TESTING "NONE" CACHE STRING "NONE")
 set(COVERAGE "NONE" CACHE STRING "NONE")
 
 set(PERSEID_NAME perseid)
-set(PERSEID_LIB libperseid)
+set(PERSEID_LIB perseidcore)
 set(PERSEID_SOURCE_DIR src)
 set(PERSEID_INCLUDE_DIR include)
 set(PERSEID_TEST_DIR test/src)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 
 find_package(Qt4 REQUIRED)
 include_directories(
@@ -53,20 +55,91 @@ add_library(${PERSEID_LIB}
   ${PERSEID_SOURCE_DIR}/util/Exception.cpp
 )
 
-set(PERSEID_SRCS
-  ${PERSEID_SOURCE_DIR}/perseid.cpp
-  ${PERSEID_SOURCE_DIR}/main.cpp
-)
-qt4_automoc(${PERSEID_SRCS})
-add_executable(
-  ${PERSEID_NAME}
-  ${PERSEID_SRCS}
-)
-target_link_libraries(
-  ${PERSEID_NAME}
-  ${PERSEID_LIB}
-  ${QT_QTCORE_LIBRARY}
-  ${QT_QTGUI_LIBRARY}
-)
-#install(TARGETS perseid RUNTIME DESTINATION bin)
+###########
+# Testing #
+###########
+
+message("-- Testing mode: ${TESTING}")
+
+IF(("FAST" STREQUAL TESTING) OR ("ALL" STREQUAL TESTING))
+
+  message("-- Tests enabled.")
+  enable_testing(true)
+  include_directories(
+    ${PERSEID_MOCK_DIR}
+  )
+
+  #################
+  # Code coverage #
+  #################
+
+  message("-- Coverage mode: ${COVERAGE}")
+  
+  IF(("LCOV" STREQUAL COVERAGE) OR ("COBERTURA" STREQUAL COVERAGE))
+    SET(CMAKE_BUILD_TYPE "Debug")
+    IF(NOT CMAKE_COMPILER_IS_GNUCXX)
+      message("-- Compiler not GNU, cannot create coverage report.")
+    ELSE()
+      FIND_PROGRAM(PYTHON_EXECUTABLE
+        NAMES python python3
+        PATHS /usr/bin /usr/local/bin /usr/pkg/bin
+      )
+      include(CodeCoverage)
+      message("-- Code coverage enabled.")
+
+      IF("LCOV" STREQUAL COVERAGE)
+        SETUP_TARGET_FOR_COVERAGE(coverage ctest coverage)
+      ELSE()
+        SETUP_TARGET_FOR_COVERAGE_COBERTURA(coverage ctest coverage)
+      ENDIF()
+    ENDIF()
+  ENDIF()
+
+  SET(UtilTests_SRCS
+    ${PERSEID_TEST_DIR}/util/ExceptionTest.cpp
+  )
+  QT4_AUTOMOC(${UtilTests_SRCS})
+  add_executable(UtilTests
+    ${UtilTests_SRCS}
+  )
+  target_link_libraries(UtilTests
+    ${PERSEID_LIB}
+    ${QT_QTTEST_LIBRARY}
+    ${QT_LIBRARIES}
+  )
+  add_test(UtilTests UtilTests)
+ENDIF()
+
+IF("ALL" STREQUAL TESTING)
+  message("-- Integration tests enabled.")
+  add_executable(IntegrationTests
+    ${PERSEID_TEST_DIR}/integration/IntegrationTests.cpp
+  )
+  target_link_libraries(IntegrationTests
+    ${PERSEID_LIB}
+    ${QT_QTTEST_LIBRARY}
+    ${QT_LIBRARIES}
+  )
+  add_test(IntegrationTests IntegrationTests)
+ENDIF()
+
+IF("EXECUTABLE" STREQUAL ${BUILD} OR "ALL" STREQUAL ${BUILD})
+  message("-- Executable enabled.")
+  set(PERSEID_SRCS
+    ${PERSEID_SOURCE_DIR}/perseid.cpp
+    ${PERSEID_SOURCE_DIR}/main.cpp
+  )
+  qt4_automoc(${PERSEID_SRCS})
+  add_executable(
+    ${PERSEID_NAME}
+    ${PERSEID_SRCS}
+  )
+  target_link_libraries(
+    ${PERSEID_NAME}
+    ${PERSEID_LIB}
+    ${QT_QTCORE_LIBRARY}
+    ${QT_QTGUI_LIBRARY}
+  )
+  #install(TARGETS perseid RUNTIME DESTINATION bin)
+ENDIF()
 

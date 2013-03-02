@@ -1,4 +1,4 @@
-/*
+/**
   @file Exception.hpp
   @author William Martin <will.st4@gmail.com>
   @since 0.0

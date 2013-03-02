@@ -1,5 +1,5 @@
 /**
- *  @file ExceptionTest.cpp
+ *  @file ExceptionTest.hpp
  *  @author William Martin <will.st4@gmail.com>
  *  @since 0.0
  *
@@ -23,13 +23,30 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtTest/QtTest>
-#include "ExceptionTest.hpp"
+#ifndef EXCEPTIONTEST_HPP
+#define EXCEPTIONTEST_HPP
 
-void ExceptionTest::messageTest()
+#include "perseid/util/Exception.hpp"
+#include <QObject>
+
+#define message "test message"
+
+using perseid::Exception;
+
+class ExceptionTest: public QObject
 {
-  QCOMPARE(testException->what(), message);
-}
+  Q_OBJECT
+public:
+  ExceptionTest(QObject* parent = 0) {
+    testException = new Exception(message);
+  }
+  virtual ~ExceptionTest() {
+    delete testException;
+  }
+private:
+  Exception * testException;
+private slots:
+  void messageTest();
+};
 
-QTEST_MAIN(ExceptionTest)
-#include "ExceptionTest.moc"
+#endif
