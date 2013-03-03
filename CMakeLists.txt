@@ -112,8 +112,12 @@ ENDIF()
 
 IF("ALL" STREQUAL TESTING)
   message("-- Integration tests enabled.")
-  add_executable(IntegrationTests
+  set(IntegrationTests_SRCS
     ${PERSEID_TEST_DIR}/integration/IntegrationTests.cpp
+  )
+  QT4_AUTOMOC(${IntegrationTests_SRCS})
+  add_executable(IntegrationTests
+    ${IntegrationTests_SRCS}
   )
   target_link_libraries(IntegrationTests
     ${PERSEID_LIB}
