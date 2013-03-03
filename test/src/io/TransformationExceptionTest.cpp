@@ -32,7 +32,7 @@ using perseid::TransformationException;
 
 struct TransformationExceptionTest {
   TransformationExceptionTest() {
-    testTransformationException = new TransformationException(message);
+    testTransformationException = new TransformationException();
   }
   virtual ~TransformationExceptionTest() {
     delete testTransformationException;
@@ -44,9 +44,20 @@ BOOST_FIXTURE_TEST_SUITE(TransformationExceptionTests,
                          TransformationExceptionTest)
 
 /**
+ * Tests whether the TransformationException's default message was set
+ * correctly.
+ */
+BOOST_AUTO_TEST_CASE(DefaultMessageTest) {
+  BOOST_CHECK_EQUAL(TRANSFORMATIONEXCEPTION_MESSAGE,
+                    testTransformationException->what());
+}
+
+/**
  * Tests whether the TransformationException's message was set correctly.
  */
 BOOST_AUTO_TEST_CASE(MessageTest) {
+  delete testTransformationException;
+  testTransformationException = new TransformationException(message);
   BOOST_CHECK_EQUAL(message, testTransformationException->what());
 }
 

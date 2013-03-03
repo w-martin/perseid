@@ -35,7 +35,7 @@ using perseid::IOException;
 
 struct IOExceptionTest {
   IOExceptionTest() {
-    testIOException = new IOException(message);
+    testIOException = new IOException();
   }
   virtual ~IOExceptionTest() {
     delete testIOException;
@@ -46,9 +46,18 @@ struct IOExceptionTest {
 BOOST_FIXTURE_TEST_SUITE(IOExceptionTests, IOExceptionTest)
 
 /**
+ * Tests whether the IOException's default message was set correctly.
+ */
+BOOST_AUTO_TEST_CASE(DefaultMessageTest) {
+  BOOST_CHECK_EQUAL(IOEXCEPTION_MESSAGE, testIOException->what());
+}
+
+/**
  * Tests whether the IOException's message was set correctly.
  */
 BOOST_AUTO_TEST_CASE(MessageTest) {
+  delete testIOException;
+  testIOException = new IOException(message);
   BOOST_CHECK_EQUAL(message, testIOException->what());
 }
 
