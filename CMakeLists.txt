@@ -103,9 +103,9 @@ IF(("FAST" STREQUAL TESTING) OR ("ALL" STREQUAL TESTING))
     ${UtilTests_SRCS}
   )
   target_link_libraries(UtilTests
-    ${PERSEID_LIB}
     ${QT_QTTEST_LIBRARY}
     ${QT_LIBRARIES}
+    ${PERSEID_LIB}
   )
   add_test(UtilTests UtilTests)
 ENDIF()

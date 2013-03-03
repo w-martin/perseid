@@ -1,5 +1,5 @@
 /**
- *  @file TransformationExceptionTest.cpp
+ *  @file TransformationExceptionTest.hpp
  *  @author William Martin <will.st4@gmail.com>
  *  @since 0.0
  *
@@ -23,13 +23,30 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtTest/QtTest>
-#include "TransformationExceptionTest.hpp"
+#ifndef TRANSFORMATIONEXCEPTIONTEST_HPP
+#define TRANSFORMATIONEXCEPTIONTEST_HPP
 
-void TransformationExceptionTest::messageTest()
+#include "perseid/util/Exception.hpp"
+#include <QObject>
+
+#define message "test message"
+
+using perseid::Exception;
+
+class TransformationExceptionTest: public QObject
 {
-    QCOMPARE(testTransformationException->what(), message);
-}
+  Q_OBJECT
+public:
+  TransformationExceptionTest(QObject* parent = 0) {
+    testException = new TransformationException(message);
+  }
+  virtual ~ExceptionTest() {
+    delete testException;
+  }
+private:
+  TransformationException * testException;
+private slots:
+  void messageTest();
+};
 
-QTEST_MAIN(TransformationExceptionTest)
-#include "TransformationExceptionTest.moc"
+#endif
