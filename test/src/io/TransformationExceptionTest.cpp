@@ -23,13 +23,31 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtTest/QtTest>
-#include "TransformationExceptionTest.hpp"
+#include <boost/test/unit_test.hpp>
+#include "perseid/io/TransformationException.hpp"
 
-void TransformationExceptionTest::messageTest()
-{
-    QCOMPARE(testTransformationException->what(), message);
+#define message "test message"
+
+using perseid::TransformationException;
+
+struct TransformationExceptionTest {
+  TransformationExceptionTest() {
+    testTransformationException = new TransformationException(message);
+  }
+  virtual ~TransformationExceptionTest() {
+    delete testTransformationException;
+  }
+  TransformationException * testTransformationException;
+};
+
+BOOST_FIXTURE_TEST_SUITE(TransformationExceptionTests,
+                         TransformationExceptionTest)
+
+/**
+ * Tests whether the TransformationException's message was set correctly.
+ */
+BOOST_AUTO_TEST_CASE(MessageTest) {
+  BOOST_CHECK_EQUAL(message, testTransformationException->what());
 }
 
-QTEST_MAIN(TransformationExceptionTest)
-#include "TransformationExceptionTest.moc"
+BOOST_AUTO_TEST_SUITE_END()

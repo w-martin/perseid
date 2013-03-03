@@ -23,13 +23,33 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtTest/QtTest>
-#include "ExceptionTest.hpp"
+#define BOOST_TEST_DYN_LINK
+#define BOOST_TEST_MODULE UtilTests
 
-void ExceptionTest::messageTest()
-{
-  QCOMPARE(testException->what(), message);
+#include <boost/test/unit_test.hpp>
+#include "perseid/util/Exception.hpp"
+
+#define message "test message"
+
+using perseid::Exception;
+
+struct ExceptionTest {
+  ExceptionTest() {
+    testException = new Exception(message);
+  }
+  virtual ~ExceptionTest() {
+    delete testException;
+  }
+  Exception * testException;
+};
+
+BOOST_FIXTURE_TEST_SUITE(ExceptionTests, ExceptionTest)
+
+/**
+ * Tests whether the Exception's message was set correctly.
+ */
+BOOST_AUTO_TEST_CASE(MessageTest) {
+  BOOST_CHECK_EQUAL(message, testException->what());
 }
 
-QTEST_MAIN(ExceptionTest)
-#include "ExceptionTest.moc"
+BOOST_AUTO_TEST_SUITE_END()

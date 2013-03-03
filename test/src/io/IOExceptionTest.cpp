@@ -23,13 +23,33 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtTest/QtTest>
-#include "IOExceptionTest.hpp"
+#define BOOST_TEST_DYN_LINK
+#define BOOST_TEST_MODULE IOTests
 
-void IOExceptionTest::messageTest()
-{
-    QCOMPARE(testIOException->what(), message);
+#include <boost/test/unit_test.hpp>
+#include "perseid/io/IOException.hpp"
+
+#define message "test message"
+
+using perseid::IOException;
+
+struct IOExceptionTest {
+  IOExceptionTest() {
+    testIOException = new IOException(message);
+  }
+  virtual ~IOExceptionTest() {
+    delete testIOException;
+  }
+  IOException * testIOException;
+};
+
+BOOST_FIXTURE_TEST_SUITE(IOExceptionTests, IOExceptionTest)
+
+/**
+ * Tests whether the IOException's message was set correctly.
+ */
+BOOST_AUTO_TEST_CASE(MessageTest) {
+  BOOST_CHECK_EQUAL(message, testIOException->what());
 }
 
-QTEST_MAIN(IOExceptionTest)
-#include "IOExceptionTest.moc"
+BOOST_AUTO_TEST_SUITE_END()

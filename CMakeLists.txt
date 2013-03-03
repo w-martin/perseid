@@ -64,8 +64,13 @@ message("-- Testing mode: ${TESTING}")
 IF(("FAST" STREQUAL TESTING) OR ("ALL" STREQUAL TESTING))
 
   message("-- Tests enabled.")
+  set(Boost_USE_MULTITHREADED ON)
+  find_package(Boost COMPONENTS
+    unit_test_framework
+    REQUIRED)
   enable_testing(true)
   include_directories(
+    ${Boost_INCLUDE_DIRS}
     ${PERSEID_MOCK_DIR}
   )
 
@@ -94,18 +99,23 @@ IF(("FAST" STREQUAL TESTING) OR ("ALL" STREQUAL TESTING))
       ENDIF()
     ENDIF()
   ENDIF()
+  
+  add_executable(IOTests
+    ${PERSEID_TEST_DIR}/io/IOExceptionTest.cpp
+    ${PERSEID_TEST_DIR}/io/TransformationExceptionTest.cpp
+  )
+  target_link_libraries(IOTests
+    ${PERSEID_LIB}
+    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
+  )
+  add_test(IOTests IOTests)
 
-  SET(UtilTests_SRCS
+  add_executable(UtilTests
     ${PERSEID_TEST_DIR}/util/ExceptionTest.cpp
   )
-  QT4_AUTOMOC(${UtilTests_SRCS})
-  add_executable(UtilTests
-    ${UtilTests_SRCS}
-  )
   target_link_libraries(UtilTests
-    ${QT_QTTEST_LIBRARY}
-    ${QT_LIBRARIES}
     ${PERSEID_LIB}
+    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
   )
   add_test(UtilTests UtilTests)
 ENDIF()
