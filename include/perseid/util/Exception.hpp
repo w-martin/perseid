@@ -2,9 +2,9 @@
   @file Exception.hpp
   @author William Martin <will.st4@gmail.com>
   @since 0.0
-    
+
   @section LICENCE
-    
+
   Perseid is a graphical paper review system that gives the user control
   of their data through a transparent xml standard.
   Copyright (C) 2013  William Martin <will.st4@gmail.com>
@@ -34,37 +34,37 @@ using std::string;
 
 namespace perseid {
 
+/**
+ * Custom <code>Exception</code> class.
+ *
+ * @param message the message that will be printed as the cause for this
+ * <code>Exception</code>.
+ */
+class Exception : public exception {
+public:
   /**
-   * Custom <code>Exception</code> class.
-   * 
+   * Default constructor.
+   *
    * @param message the message that will be printed as the cause for this
    * <code>Exception</code>.
    */
-  class Exception : public exception {
-  public:
-    /**
-     * Default constructor.
-     * 
-     * @param message the message that will be printed as the cause for this
-     * <code>Exception</code>.
-     */
-    Exception(string const message);
-    /**
-     * Default destructor. 
-     */
-    virtual ~Exception() throw ();
-    /**
-     * Returns a C-style character string describing the general cause of 
-     * the current error.
-     * 
-     * @return a C-style character string describing the general cause of 
-     * the current error.
-     */
-    virtual char const * what() const throw ();
-  private:
-    string message;
-  };
-  
+  Exception(string const message);
+  /**
+   * Default destructor.
+   */
+  virtual ~Exception() throw ();
+  /**
+   * Returns a C-style character string describing the general cause of
+   * the current error.
+   *
+   * @return a C-style character string describing the general cause of
+   * the current error.
+   */
+  virtual char const * what() const throw ();
+private:
+  string message;
+};
+
 };
 
 #endif	/* EXCEPTION_H */

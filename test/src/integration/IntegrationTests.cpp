@@ -26,8 +26,7 @@
 #include <QtTest/QtTest>
 #include "IntegrationTests.hpp"
 
-void IntegrationTests::stub()
-{
+void IntegrationTests::stub() {
 }
 
 QTEST_MAIN(IntegrationTests)

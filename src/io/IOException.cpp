@@ -26,9 +26,9 @@
 #include "perseid/io/IOException.hpp"
 
 perseid::IOException::IOException()
-: perseid::Exception(IOEXCEPTION_MESSAGE) {
+  : perseid::Exception(IOEXCEPTION_MESSAGE) {
 }
 
 perseid::IOException::IOException(string const message)
-: perseid::Exception(message) {
+  : perseid::Exception(message) {
 }

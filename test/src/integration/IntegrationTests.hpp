@@ -28,16 +28,15 @@
 
 #include <QObject>
 
-class IntegrationTests: public QObject
-{
-    Q_OBJECT
+class IntegrationTests: public QObject {
+  Q_OBJECT
 public:
-    IntegrationTests(QObject* parent = 0) {
-    }
-    virtual ~IntegrationTests() {
-    }
+  IntegrationTests(QObject* parent = 0) {
+  }
+  virtual ~IntegrationTests() {
+  }
 private slots:
-    void stub();
+  void stub();
 };
 
 #endif

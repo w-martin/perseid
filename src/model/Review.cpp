@@ -22,28 +22,23 @@
 
 using perseid::Review;
 
-perseid::Review::Review()
-{
+perseid::Review::Review() {
 
 }
 
-perseid::Review::Review(const Review& other)
-{
+perseid::Review::Review(const Review& other) {
 
 }
 
-perseid::Review::~Review()
-{
+perseid::Review::~Review() {
 
 }
 
-Review& perseid::Review::operator=(const Review& other)
-{
-return *this;
+Review& perseid::Review::operator=(const Review& other) {
+  return *this;
 }
 
-bool perseid::Review::operator==(const Review& other) const
-{
+bool perseid::Review::operator==(const Review& other) const {
 ///TODO: return ...;
 }
 

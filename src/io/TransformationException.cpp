@@ -26,10 +26,10 @@
 #include "perseid/io/TransformationException.hpp"
 
 perseid::TransformationException::TransformationException()
-: perseid::Exception(TRANSFORMATIONEXCEPTION_MESSAGE) {
+  : perseid::Exception(TRANSFORMATIONEXCEPTION_MESSAGE) {
 }
 
 perseid::TransformationException::TransformationException(
   string const message)
-: perseid::Exception(message) {
+  : perseid::Exception(message) {
 }

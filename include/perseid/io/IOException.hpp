@@ -32,20 +32,20 @@
 
 namespace perseid {
 
+/**
+ * Indicates that an exception occurred whilst doing input or output.
+ */
+class IOException : public perseid::Exception {
+public:
   /**
-   * Indicates that an exception occurred whilst doing input or output.
+   * Default constructor.
    */
-  class IOException : public perseid::Exception {
-  public:
-    /**
-     * Default constructor.
-     */
-    IOException();
-    /**
-     * Constructs an exception using the given message.
-     */
-    IOException(string const message);
-  };
+  IOException();
+  /**
+   * Constructs an exception using the given message.
+   */
+  IOException(string const message);
+};
 
 };
 

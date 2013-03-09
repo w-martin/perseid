@@ -32,20 +32,20 @@
 
 namespace perseid {
 
+/**
+ * Indicates that an exception occurred whilst transforming a review.
+ */
+class TransformationException : public perseid::Exception {
+public:
   /**
-   * Indicates that an exception occurred whilst transforming a review.
+   * Default constructor.
    */
-  class TransformationException : public perseid::Exception {
-  public:
-    /**
-     * Default constructor.
-     */
-    TransformationException();
-    /**
-     * Constructs an exception using the given message.
-     */
-    TransformationException(string const message);
-  };
+  TransformationException();
+  /**
+   * Constructs an exception using the given message.
+   */
+  TransformationException(string const message);
+};
 
 };
 

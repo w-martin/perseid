@@ -2,9 +2,9 @@
   @file Transformer.hpp
   @author William Martin <will.st4@gmail.com>
   @since 0.0
-    
+
   @section LICENCE
-    
+
   Perseid is a graphical paper review system that gives the user control
   of their data through a transparent xml standard.
   Copyright (C) 2013  William Martin <will.st4@gmail.com>
@@ -38,32 +38,32 @@ using std::string;
 
 namespace perseid {
 
+/**
+ * Interface for converting between Review objects and files.
+ */
+class Transformer {
+public:
   /**
-   * Interface for converting between Review objects and files.
+   * Inputs the given file and transforms it into a Review object.
+   *
+   * @param filename the name of the file to transform.
+   * @returns the input Review.
+   * @throws TransformationException if there was an error reading the
+   * Review.
    */
-  class Transformer {
-  public:
-    /**
-     * Inputs the given file and transforms it into a Review object.
-     * 
-     * @param filename the name of the file to transform.
-     * @returns the input Review.
-     * @throws TransformationException if there was an error reading the 
-     * Review.
-     */
-    virtual Review input(string const & filename) 
-      throw (TransformationException) = 0;
-    
-    /**
-     * Writes the given review to the given file.
-     * 
-     * @param review the Review to write.
-     * @param filename the name of the file to write to.
-     * @throws IOException if there was an error writing the Review.
-     */
-    virtual void output(Review const * const review, string const & filename) 
-      throw (IOException) = 0;
-  };
+  virtual Review input(string const & filename)
+  throw (TransformationException) = 0;
+
+  /**
+   * Writes the given review to the given file.
+   *
+   * @param review the Review to write.
+   * @param filename the name of the file to write to.
+   * @throws IOException if there was an error writing the Review.
+   */
+  virtual void output(Review const * const review, string const & filename)
+  throw (IOException) = 0;
+};
 
 };
 

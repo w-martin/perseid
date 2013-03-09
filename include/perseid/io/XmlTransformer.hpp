@@ -2,9 +2,9 @@
   @file XmlTransformer.hpp
   @author William Martin <will.st4@gmail.com>
   @since 0.0
-    
+
   @section LICENCE
-  
+
   Perseid is a graphical paper review system that gives the user control
   of their data through a transparent xml standard.
   Copyright (C) 2013  William Martin <will.st4@gmail.com>
@@ -30,30 +30,30 @@
 
 namespace perseid {
 
+/**
+ * Transforms a Review to and from XML.
+ */
+class XmlTransformer : public perseid::Transformer {
+public:
   /**
-   * Transforms a Review to and from XML.
+   * Default constructor.
    */
-  class XmlTransformer : public perseid::Transformer {
-  public:
-    /**
-     * Default constructor.
-     */
-    XmlTransformer();
-    /**
-     * Default destructor.
-     */
-    virtual ~XmlTransformer();
-    /**
-     * {@inheritdoc}
-     */
-    virtual Review input(string const & filename) 
-      throw (TransformationException);
-    /**
-     * {@inheritdoc}
-     */
-    virtual void output(Review const * const review, string const & filename) 
-      throw (IOException);
-  };
+  XmlTransformer();
+  /**
+   * Default destructor.
+   */
+  virtual ~XmlTransformer();
+  /**
+   * {@inheritdoc}
+   */
+  virtual Review input(string const & filename)
+  throw (TransformationException);
+  /**
+   * {@inheritdoc}
+   */
+  virtual void output(Review const * const review, string const & filename)
+  throw (IOException);
+};
 
 };
 

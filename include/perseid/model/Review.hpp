@@ -23,14 +23,14 @@
 
 namespace perseid {
 
-  class Review {
-  public:
-    Review();
-    Review(const Review& other);
-    virtual ~Review();
-    virtual Review& operator=(const Review& other);
-    virtual bool operator==(const Review& other) const;
-  };
+class Review {
+public:
+  Review();
+  Review(const Review& other);
+  virtual ~Review();
+  virtual Review& operator=(const Review& other);
+  virtual bool operator==(const Review& other) const;
+};
 
 };
 

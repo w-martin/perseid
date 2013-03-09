@@ -2,9 +2,9 @@
   @file Exception.cpp
   @author William Martin <will.st4@gmail.com>
   @since 0.0
-    
+
   @section LICENCE
-    
+
   Perseid is a graphical paper review system that gives the user control
   of their data through a transparent xml standard.
   Copyright (C) 2013  William Martin <will.st4@gmail.com>
