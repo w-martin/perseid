@@ -23,11 +23,21 @@
 using perseid::Review;
 
 perseid::Review::Review() {
-
+  abstract = "";
+  authorID = -1;
+  comments = "";
+  name = "";
+  paperID = -1;
+  summary = "";
 }
 
 perseid::Review::Review(const Review& other) {
-
+  authorID = other.getAuthorID();
+  paperID = other.getPaperID();
+  abstract = other.getAbstract();
+  comments = other.getComments();
+  name = other.getName();
+  summary = other.getSummary();
 }
 
 perseid::Review::~Review() {
@@ -35,10 +45,77 @@ perseid::Review::~Review() {
 }
 
 Review& perseid::Review::operator=(const Review& other) {
+  authorID = other.getAuthorID();
+  paperID = other.getPaperID();
+  abstract = other.getAbstract();
+  comments = other.getComments();
+  name = other.getName();
+  summary = other.getSummary();
   return *this;
 }
 
 bool perseid::Review::operator==(const Review& other) const {
-///TODO: return ...;
+  return equals(&other);
 }
 
+bool perseid::Review::operator!=(const Review& other) const {
+  return !equals(&other);
+}
+
+bool const perseid::Review::equals(Review const * const other) const {
+  return (authorID == other->getAuthorID()
+    && paperID == other->getPaperID()
+    && abstract == other->getAbstract()
+    && comments == other->getComments()
+    && name == other->getName()
+    && summary == other->getSummary()
+  );
+}
+
+string const perseid::Review::getAbstract() const {
+  return abstract;
+}
+
+void perseid::Review::setAbstract(string const & abstract) {
+  this->abstract = abstract;
+}
+
+int const perseid::Review::getAuthorID() const {
+  return authorID;
+}
+
+void perseid::Review::setAuthorID(int const & authorID) {
+  this->authorID = authorID;
+}
+
+string const perseid::Review::getComments() const {
+  return comments;
+}
+
+void perseid::Review::setComments(string const & comments) {
+  this->comments = comments;
+}
+
+string const perseid::Review::getName() const {
+  return name;
+}
+
+void perseid::Review::setName(string const & name) {
+  this->name = name;
+}
+
+int const perseid::Review::getPaperID() const {
+  return paperID;
+}
+
+void perseid::Review::setPaperID(int const & paperID) {
+  this->paperID = paperID;
+}
+
+string const perseid::Review::getSummary() const {
+  return summary;
+}
+
+void perseid::Review::setSummary(string const & summary) {
+  this->summary = summary;
+}

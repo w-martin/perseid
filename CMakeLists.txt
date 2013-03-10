@@ -110,6 +110,15 @@ IF(("FAST" STREQUAL TESTING) OR ("ALL" STREQUAL TESTING))
   )
   add_test(IOTests IOTests)
 
+  add_executable(ModelTests
+    ${PERSEID_TEST_DIR}/model/ReviewTest.cpp
+  )
+  target_link_libraries(ModelTests
+    ${PERSEID_LIB}
+    ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
+  )
+  add_test(ModelTests ModelTests)
+
   add_executable(UtilTests
     ${PERSEID_TEST_DIR}/util/ExceptionTest.cpp
   )
