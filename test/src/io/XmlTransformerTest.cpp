@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(InputTest) {
  */
 BOOST_AUTO_TEST_CASE(OutputTest) {
   Review review;
-  testXmlTransformer->output(&review, message);
+  testXmlTransformer->output(review, message);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

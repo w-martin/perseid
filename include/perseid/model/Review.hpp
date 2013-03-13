@@ -86,17 +86,17 @@ public:
    */
   void setAbstract(string const & abstract);
   /**
-   * Gets the Author identification number.
+   * Gets the author name.
    *
-   * @returns the Author identification number.
+   * @returns the author name.
    */
-  int const getAuthorID() const;
+  string const getAuthor() const;
   /**
-   * Sets the Author identification number.
+   * Sets the author name.
    *
-   * @param authorID the Author identification number.
+   * @param author the author name.
    */
-  void setAuthorID(int const & authorID);
+  void setAuthorID(string const & author);
   /**
    * Gets the comments.
    *
@@ -122,18 +122,6 @@ public:
    */
   void setName(string const & name);
   /**
-   * Gets the Paper identification number.
-   *
-   * @returns the Paper identification number.
-   */
-  int const getPaperID() const;
-  /**
-   * Sets the Paper identification number.
-   *
-   * @param paperID the Paper identification number.
-   */
-  void setPaperID(int const & paperID);
-  /**
    * Gets the summary.
    *
    * @returns the summary.
@@ -147,10 +135,9 @@ public:
   void setSummary(string const & summary);
 private:
   string abstract;
-  int authorID;
+  string author;
   string comments;
   string name;
-  int paperID;
   string summary;
 };
 

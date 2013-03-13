@@ -24,16 +24,14 @@ using perseid::Review;
 
 perseid::Review::Review() {
   abstract = "";
-  authorID = -1;
+  author = "-1""";
   comments = "";
   name = "";
-  paperID = -1;
   summary = "";
 }
 
 perseid::Review::Review(const Review& other) {
-  authorID = other.getAuthorID();
-  paperID = other.getPaperID();
+  author = other.getAuthor();
   abstract = other.getAbstract();
   comments = other.getComments();
   name = other.getName();
@@ -45,8 +43,7 @@ perseid::Review::~Review() {
 }
 
 Review& perseid::Review::operator=(const Review& other) {
-  authorID = other.getAuthorID();
-  paperID = other.getPaperID();
+  author = other.getAuthor();
   abstract = other.getAbstract();
   comments = other.getComments();
   name = other.getName();
@@ -63,8 +60,7 @@ bool perseid::Review::operator!=(const Review& other) const {
 }
 
 bool const perseid::Review::equals(Review const * const other) const {
-  return (authorID == other->getAuthorID()
-          && paperID == other->getPaperID()
+  return (author == other->getAuthor()
           && abstract == other->getAbstract()
           && comments == other->getComments()
           && name == other->getName()
@@ -80,12 +76,12 @@ void perseid::Review::setAbstract(string const & abstract) {
   this->abstract = abstract;
 }
 
-int const perseid::Review::getAuthorID() const {
-  return authorID;
+string const perseid::Review::getAuthor() const {
+  return author;
 }
 
-void perseid::Review::setAuthorID(int const & authorID) {
-  this->authorID = authorID;
+void perseid::Review::setAuthor(string const & author) {
+  this->author = author;
 }
 
 string const perseid::Review::getComments() const {
@@ -102,14 +98,6 @@ string const perseid::Review::getName() const {
 
 void perseid::Review::setName(string const & name) {
   this->name = name;
-}
-
-int const perseid::Review::getPaperID() const {
-  return paperID;
-}
-
-void perseid::Review::setPaperID(int const & paperID) {
-  this->paperID = paperID;
 }
 
 string const perseid::Review::getSummary() const {

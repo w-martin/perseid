@@ -61,7 +61,7 @@ public:
    * @param filename the name of the file to write to.
    * @throws IOException if there was an error writing the Review.
    */
-  virtual void output(Review const * const review, string const & filename)
+  virtual void output(Review const & review, string const & filename)
   throw (IOException) = 0;
 };
 
