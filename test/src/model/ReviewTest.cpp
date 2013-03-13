@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_CASE(CopyConstuctorTest) {
   testReview->setName("c");
   testReview->setPaperID(2);
   testReview->setSummary("d");
-  
+
   Review copy(*testReview);
   BOOST_CHECK_EQUAL("a", copy.getAbstract());
   BOOST_CHECK_EQUAL(1, copy.getAuthorID());
@@ -158,7 +158,7 @@ BOOST_AUTO_TEST_CASE(AssignmentOperatorTest) {
 BOOST_AUTO_TEST_CASE(EqualsTest) {
   Review copy(*testReview);
   BOOST_CHECK(copy.equals(testReview));
-  
+
   testReview->setAbstract("a");
   BOOST_CHECK(!copy.equals(testReview));
   copy.setAbstract("a");

@@ -64,12 +64,12 @@ bool perseid::Review::operator!=(const Review& other) const {
 
 bool const perseid::Review::equals(Review const * const other) const {
   return (authorID == other->getAuthorID()
-    && paperID == other->getPaperID()
-    && abstract == other->getAbstract()
-    && comments == other->getComments()
-    && name == other->getName()
-    && summary == other->getSummary()
-  );
+          && paperID == other->getPaperID()
+          && abstract == other->getAbstract()
+          && comments == other->getComments()
+          && name == other->getName()
+          && summary == other->getSummary()
+         );
 }
 
 string const perseid::Review::getAbstract() const {

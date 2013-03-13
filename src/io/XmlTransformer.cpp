@@ -28,3 +28,14 @@ perseid::XmlTransformer::~XmlTransformer() {
 
 }
 
+Review perseid::XmlTransformer::input(string const & filename)
+throw (TransformationException) {
+
+  return Review();
+}
+
+void perseid::XmlTransformer::output(Review const * const review,
+                                     string const & filename)
+throw (IOException) {
+
+}

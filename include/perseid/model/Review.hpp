@@ -53,7 +53,7 @@ public:
    * Checks if the given Review is equal to this Review.
    *
    * @param other the Review to compare to.
-   * @returns true if the given Review is equal to this Review, false 
+   * @returns true if the given Review is equal to this Review, false
    * otherwise.
    */
   bool operator==(const Review& other) const;
@@ -69,7 +69,7 @@ public:
    * Checks if the given Review is equal to this Review.
    *
    * @param other the Review to compare to.
-   * @returns true if the given Review is equal to this Review, false 
+   * @returns true if the given Review is equal to this Review, false
    * otherwise.
    */
   virtual bool const equals(Review const * const other) const;
